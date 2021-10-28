@@ -110,6 +110,7 @@ public class AuthServerConfiguration {
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient client = RegisteredClient.withId("pig")
                 .clientId("pig")
+                .clientAuthenticationMethod(ClientAuthenticationMethod.NONE)
                 .authorizationGrantTypes(authorizationGrantTypes -> {
                     authorizationGrantTypes.add(AuthorizationGrantType.AUTHORIZATION_CODE);
                     authorizationGrantTypes.add(AuthorizationGrantType.REFRESH_TOKEN);
