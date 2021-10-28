@@ -1,7 +1,7 @@
 My steps to when server run :
 1. Open authorization URL in browser
 ```
-http://localhost:3000/oauth2/authorize?response_type=code&client_id=pig&code_challenge=x0TUH323lFGUGY46xb-K3erPjA5XrtVHelWz1Tc6xRc=&code_challenge_method=S256&scope=read
+http://localhost:3000/oauth2/authorize?response_type=code&client_id=pig&code_challenge=w85grllBKYAapd5EpsJfA-f8DAaVGrJloV3wcJ5tEvQ&code_challenge_method=S256&scope=read
 ```
 
 2. Login with username lengleng and password 123456, and this will redirect to consent page.
@@ -22,7 +22,7 @@ curl --location --request POST 'http://localhost:3000/oauth2/token?client_id=pig
 `Param code` : vkEKhr-ltf24KeYCGjpJGWNZDOhF0f7mLO89_PWxnX5Sxg5SZQEmy18Y6eepbIob3zmUNKTFLSyKLHg1_GB0wImzMngAqyNkgaPJz0oHHGWaTVGQFQd3XCCQAWcMvkj6
 `Param client_id` : pig (I already try to include and exclude this param, result is still invalid_client)
 `Param scope`: read
-`Param code_verifier`：LLrVdz2JKxBqePkp4X5NrFLb4cWl47cspdVwcVthgOk
+`Param code_verifier`：-BSWEXdK-BhKrbjjpnrKTdUto44vNtVxuNg5dkP1u00
 Hit Send
 
 # TOD0O以下排序為優先順序
