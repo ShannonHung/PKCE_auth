@@ -24,3 +24,9 @@ curl --location --request POST 'http://localhost:3000/oauth2/token?client_id=pig
 `Param scope`: read
 `Param code_verifier`：LLrVdz2JKxBqePkp4X5NrFLb4cWl47cspdVwcVthgOk
 Hit Send
+
+# TOD0O以下排序為優先順序
+1. 建立resource server(PEP)，resource server 可以跟oauth進行token認證
+2. 把client and user 都建立在jdbc裡面 而非inmemory
+3. userDetail建立起來 可以進行使用者帳號的建立 
+4. clientRegister也可以建立api來創建
