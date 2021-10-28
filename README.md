@@ -1,45 +1,26 @@
-
-## 授权码认证
-```shell
-'http://localhost:3000/oauth2/authorize?client_id=pig&client_secret=pig&response_type=code&redirect_uri=https://pig4cloud.com'
+My steps to when server run :
+1. Open authorization URL in browser
+```
+http://localhost:3000/oauth2/authorize?response_type=code&client_id=pig&code_challenge=x0TUH323lFGUGY46xb-K3erPjA5XrtVHelWz1Tc6xRc=&code_challenge_method=S256&scope=read
 ```
 
-## 获取令牌
-
-```shell
-curl --location --request POST 'http://localhost:3000/oauth2/token' \
---header 'Authorization: Basic cGlnOnBpZw==' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'grant_type=authorization_code' \
---data-urlencode 'code=O9gGDaU87wnMVLM0dLNxxNTnE4In757BVBE_yJuG98BlG3T3rI_sluCLpEAThoxYTtRtmbhiGufiuFVc6FTtP3GhzFcObCMr5N_dqGuC3ChpZEvMJhrhqQ7dEqjMsuf5' \
---data-urlencode 'redirect_uri=https://pig4cloud.com'
+2. Login with username lengleng and password 123456, and this will redirect to consent page.
+3. accept the consent. This will redirect to :
 ```
-## 刷新令牌
-
-```shell
-curl --location --request POST 'http://localhost:3000/oauth2/token' \
---header 'Authorization: Basic cGlnOnBpZw==' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'grant_type=refresh_token' \
---data-urlencode 'refresh_token=ku4R4n7YD1f584KXj4k_3GP9o-HbdY-PDIIh-twPVJTmvHa5mLIoifaNhbBvFNBbse6_wAMcRoOWuVs9qeBWpxQ5zIFrF1A4g1Q7LhVAfH1vo9Uc7WL3SP3u82j0XU5x' \
+http://127.0.0.1:9090/authorized?code=vkEKhr-ltf24KeYCGjpJGWNZDOhF0f7mLO89_PWxnX5Sxg5SZQEmy18Y6eepbIob3zmUNKTFLSyKLHg1_GB0wImzMngAqyNkgaPJz0oHHGWaTVGQFQd3XCCQAWcMvkj6
 ```
 
-## 撤销令牌
-
-- 通过 access_token
-```shell
-curl --location --request POST 'http://localhost:3000/oauth2/revoke' \
---header 'Authorization: Basic cGlnOnBpZw==' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'token=eyJraWQiOiI0NmM3Zjk0OS01NmZmLTRlMjgtYmI4Zi0wNjZjYWU4ODllNDkiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJsZW5nbGVuZyIsImF1ZCI6InBpZyIsIm5iZiI6MTYyOTM0MzM4NiwiZXhwIjoxNjI5MzQzNjg2LCJpYXQiOjE2MjkzNDMzODZ9.avRZ9NuybP8bqenEstvDq3SAKuSI6Y3ihh2PqeiQvwkUAWBPY6N9JCaxJllKhrcS6OgL76I38Yvt0B1ICMFistqemWl1rxQUB2aXpZuTwnPjxtxV6deDxyr--Y1w7I9jVpT5jnaqOXDIZ6dhIlUCfqBPT9a4DmwuEsz5H60KUO-NbMM66DPDxvTgauuylhrjiPQgaDyaxFHbtdw6qq_pgFI023fkIASodauCFiUcl64HKV3or9B3OkXW0EgnA553ofTbgz0hlROMfee15wuzOAXTUkhlUOjjosuEslimT9vFM9wtRza4o864Gi_j_zIhIoSSmRfUScXTgt9aZT1xlQ' \
---data-urlencode 'token_type_hint=access_token'
+4. copy the code, and set the following in Postman (which follow in the video: https://www.youtube.com/watch?v=xEw5m1EV7ZY&t=1279s)
+```
+curl --location --request POST 'http://localhost:3000/oauth2/token?client_id=pig&code_verifier=LLrVdz2JKxBqePkp4X5NrFLb4cWl47cspdVwcVthgOk&code=vkEKhr-ltf24KeYCGjpJGWNZDOhF0f7mLO89_PWxnX5Sxg5SZQEmy18Y6eepbIob3zmUNKTFLSyKLHg1_GB0wImzMngAqyNkgaPJz0oHHGWaTVGQFQd3XCCQAWcMvkj6&grant_type=authorization_code&scope=read' \
+--header 'Cookie: JSESSIONID=D5EC5CEAED017DE2148274E5B1A94A6E'
 ```
 
-- 通过 refresh_token
-```shell
-curl --location --request POST 'http://localhost:3000/oauth2/revoke' \
---header 'Authorization: Basic cGlnOnBpZw==' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'token=ku4R4n7YD1f584KXj4k_3GP9o-HbdY-PDIIh-twPVJTmvHa5mLIoifaNhbBvFNBbse6_wAMcRoOWuVs9qeBWpxQ5zIFrF1A4g1Q7LhVAfH1vo9Uc7WL3SP3u82j0XU5x' \
---data-urlencode 'token_type_hint=refresh_token'
-```
+`Request Method` : POST
+`Basic Auth` : None
+`Param grant_type` : authorization_code
+`Param code` : vkEKhr-ltf24KeYCGjpJGWNZDOhF0f7mLO89_PWxnX5Sxg5SZQEmy18Y6eepbIob3zmUNKTFLSyKLHg1_GB0wImzMngAqyNkgaPJz0oHHGWaTVGQFQd3XCCQAWcMvkj6
+`Param client_id` : pig (I already try to include and exclude this param, result is still invalid_client)
+`Param scope`: read
+`Param code_verifier`：LLrVdz2JKxBqePkp4X5NrFLb4cWl47cspdVwcVthgOk
+Hit Send
